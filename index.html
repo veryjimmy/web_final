@@ -1,0 +1,655 @@
+<html>
+
+<head>
+    <title>HTML5 Canvas Winning Wheel</title>
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="Winwheel.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+</head>
+
+<body onload="GiveMoney()" style="background-color:lightslategray">
+    <div align="center">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <b>結果：</b>
+                    <div id=t1 style="border-width:3;border-style:solid;border-color:black;font-size:50px;color:black;width:94px;text-align: center">0</div>
+                    <div class="power_controls">
+                        <br />
+                        <br />
+                        <table class="power" cellpadding="10" cellspacing="0">
+                            <tr>
+                                <th align="center">Power</th>
+                            </tr>
+                            <tr>
+                                <td width="78" align="center" id="pw3" onClick="powerSelected(3);">High</td>
+                            </tr>
+                            <tr>
+                                <td align="center" id="pw2" onClick="powerSelected(2);">Med</td>
+                            </tr>
+                            <tr>
+                                <td align="center" id="pw1" onClick="powerSelected(1);">Low</td>
+                            </tr>
+                        </table>
+                        <br />
+                        <img id="spin_button" src="spin_off.png" alt="Spin" onClick="startSpin();" />
+                        <br/><br/>
+                        <a href="#" onClick="resetWheel(); return false;"><img src="replay.png" style="width: 100px;height: 60px" /></a>
+                    </div>
+                </td>
+                <td width="575" height="582" class="the_wheel" align="center" valign="center">
+                    <canvas id="canvas" width="434" height="434">
+                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                    </canvas>
+                </td>
+            </tr>
+        </table>
+        <div id="game" style="margin-top: 15px">
+            <table rules=all border="3" bgcolor="white" width="500" height="150">
+                <tr style="text-align: center">
+                    <td rowspan=3 style="width:30px" class="a">0</td>
+                    <td id=1 bgcolor="#FF6161" style="width:30px" onclick="putmoney(this)">
+                        <font color="white">1</font>
+                    </td>
+                    <td id=4 bgcolor="#2B2B2B" style="width:30px" onclick="putmoney1(this)">
+                        <font color="white">4</font>
+                    </td>
+                    <td id=7 bgcolor="#FF6161" style="width:30px" onclick="putmoney(this)">
+                        <font color="white">7</font>
+                    </td>
+                    <td id=10 bgcolor="#2B2B2B" style="width:30px" onclick="putmoney1(this)">
+                        <font color="white">10</font>
+                    </td>
+                    <td id=13 bgcolor="#2B2B2B" style="width:30px" onclick="putmoney1(this)">
+                        <font color="white">13</font>
+                    </td>
+                    <td id=16 bgcolor="#FF6161" style="width:30px" onclick="putmoney(this)">
+                        <font color="white">16</font>
+                    </td>
+                    <td id=19 bgcolor="#2B2B2B" style="width:30px" onclick="putmoney1(this)">
+                        <font color="white">19</font>
+                    </td>
+                    <td id=22 bgcolor="#2B2B2B" style="width:30px" onclick="putmoney1(this)">
+                        <font color="white">22</font>
+                    </td>
+                    <td id=25 bgcolor="#FF6161" style="width:30px" onclick="putmoney(this)">
+                        <font color="white">25</font>
+                    </td>
+                    <td id=28 bgcolor="#FF6161" style="width:30px" onclick="putmoney(this)">
+                        <font color="white">28</font>
+                    </td>
+                    <td id=31 bgcolor="#2B2B2B" style="width:30px" onclick="putmoney1(this)">
+                        <font color="white">31</font>
+                    </td>
+                    <td id=34 bgcolor="#FF6161" style="width:30px" onclick="putmoney(this)">
+                        <font color="white">34</font>
+                    </td>
+
+                </tr>
+                <tr style="width:30px;text-align: center">
+                    <td id=2 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">2</font>
+                    </td>
+                    <td id=5 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">5</font>
+                    </td>
+                    <td id=8 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">8</font>
+                    </td>
+                    <td id=11 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">11</font>
+                    </td>
+                    <td id=14 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">14</font>
+                    </td>
+                    <td id=17 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">17</font>
+                    </td>
+                    <td id=20 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">20</font>
+                    </td>
+                    <td id=23 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">23</font>
+                    </td>
+                    <td id=26 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">26</font>
+                    </td>
+                    <td id=29 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">29</font>
+                    </td>
+                    <td id=32 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">32</font>
+                    </td>
+                    <td id=35 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">35</font>
+                    </td>
+                </tr>
+                <tr style="width:30px;text-align: center">
+                    <td id=3 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">3</font>
+                    </td>
+                    <td id=6 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">6</font>
+                    </td>
+                    <td id=9 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">9</font>
+                    </td>
+                    <td id=12 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">12</font>
+                    </td>
+                    <td id=15 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">15</font>
+                    </td>
+                    <td id=18 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">18</font>
+                    </td>
+                    <td id=21 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">21</font>
+                    </td>
+                    <td id=24 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">24</font>
+                    </td>
+                    <td id=27 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">27</font>
+                    </td>
+                    <td id=30 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">30</font>
+                    </td>
+                    <td id=33 bgcolor="#2B2B2B" onclick="putmoney1(this)">
+                        <font color="white">33</font>
+                    </td>
+                    <td id=36 bgcolor="#FF6161" onclick="putmoney(this)">
+                        <font color="white">36</font>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <div id="money" style="position:absolute;top:665px;left:550px;" bgcolor="black">
+        </div>
+        <br>
+        <div>
+            <tr>
+                <td><button onclick="col1()">COULUMN 1</button></td>
+                <td><button onclick="col2()">COULUMN 2</button></td>
+                <td><button onclick="col3()">COULUMN 3</button></td>
+            </tr>
+        </div>
+        <br>
+        <table style="border: 5px solid #4F4F4F;width:500px">
+            <tr>
+                <th>規則說明</th>
+            </tr>
+            <tr>
+                <td>下注幾個數字就會扣多少錢，但下注的數字如果中了，就會依據下注幾個數字來給錢， ex. 如果下注1個數字，如果中了就可以得到36元， 如果下注2個數字，如果中了就可以得到35元，以此類推。
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        // Create new wheel object specifying the parameters at creation time.
+        var theWheel = new Winwheel({
+            'outerRadius': 212, // Set outer radius so wheel fits inside the background.
+            'innerRadius': 75, // Make wheel hollow so segments don't go all way to center.
+            'textFontSize': 24, // Set default font size for the segments.
+            'textOrientation': 'vertical', // Make text vertial so goes down from the outside of wheel.
+            'textAlignment': 'outer', // Align text to outside of wheel.
+            'numSegments': 30, // Specify number of segments.
+            'segments': // Define segments including colour and text.
+                [ // font size and test colour overridden on backrupt segments.
+                    {
+                        'fillStyle': '#5CBB54',
+                        'text': '0',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '32',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '15',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '19',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '4',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '21',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '2',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '25',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '17',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '34',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '6',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '27',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '13',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '36',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '11',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '30',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '8',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '23',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '10',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '5',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '24',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '16',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '33',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '1',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '20',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '14',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '31',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '9',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '22',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '18',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '29',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '7',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '28',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '12',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '35',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                    {
+                        'fillStyle': '#FF6161',
+                        'text': '3',
+                        'textFontSize': 16,
+                        'textFillStyle': '#000000'
+                    },
+                    {
+                        'fillStyle': '#2B2B2B',
+                        'text': '26',
+                        'textFontSize': 16,
+                        'textFillStyle': '#ffffff'
+                    },
+                ],
+            'animation': // Specify the animation to use.
+            {
+                'type': 'spinToStop',
+                'duration': 8, // Duration in seconds.
+                'spins': 3, // Default number of complete spins.
+                'callbackFinished': 'alertPrize()'
+            }
+        });
+
+        // Vars used by the code in this page to do power controls.
+        var wheelPower = 0;
+        var wheelSpinning = false;
+        var i1 = 1;
+        var total = 1000;
+        var click = 0;
+
+        function GiveMoney() {
+            //document.getElementById("money").innerHTML = "you have " + total + " money left.";
+        }
+
+        // -------------------------------------------------------
+        // Function to handle the onClick on the power buttons.
+        // -------------------------------------------------------
+        function powerSelected(powerLevel) {
+            // Ensure that power can't be changed while wheel is spinning.
+            if (wheelSpinning == false) {
+                // Reset all to grey incase this is not the first time the user has selected the power.
+                document.getElementById('pw1').className = "";
+                document.getElementById('pw2').className = "";
+                document.getElementById('pw3').className = "";
+
+                // Now light up all cells below-and-including the one selected by changing the class.
+                if (powerLevel >= 1) {
+                    document.getElementById('pw1').className = "pw1";
+                }
+
+                if (powerLevel >= 2) {
+                    document.getElementById('pw2').className = "pw2";
+                }
+
+                if (powerLevel >= 3) {
+                    document.getElementById('pw3').className = "pw3";
+                }
+
+                // Set wheelPower var used when spin button is clicked.
+                wheelPower = powerLevel;
+
+                // Light up the spin button by changing it's source image and adding a clickable class to it.
+                document.getElementById('spin_button').src = "spin_on.png";
+                document.getElementById('spin_button').className = "clickable";
+            }
+        }
+
+        // -------------------------------------------------------
+        // Click handler for spin button.
+        // -------------------------------------------------------
+        function startSpin() {
+            // Ensure that spinning can't be clicked again while already running.
+            if (wheelSpinning == false) {
+                // Based on the power level selected adjust the number of spins for the wheel, the more times is has
+                // to rotate with the duration of the animation the quicker the wheel spins.
+                if (wheelPower == 1) {
+                    theWheel.animation.spins = 3;
+                } else if (wheelPower == 2) {
+                    theWheel.animation.spins = 6;
+                } else if (wheelPower == 3) {
+                    theWheel.animation.spins = 9;
+                }
+
+                // Disable the spin button so can't click again while wheel is spinning.
+                document.getElementById('spin_button').src = "spin_off.png";
+                document.getElementById('spin_button').className = "";
+
+                // Begin the spin animation by calling startAnimation on the wheel object.
+                theWheel.startAnimation();
+
+                // Set to true so that power can't be changed and spin button re-enabled during
+                // the current animation. The user will have to reset before spinning again.
+                wheelSpinning = true;
+            }
+        }
+
+        // -------------------------------------------------------
+        // Function for reset button.
+        // -------------------------------------------------------
+        function resetWheel() {
+            theWheel.stopAnimation(false); // Stop the animation, false as param so does not call callback function.
+            theWheel.rotationAngle = 0; // Re-set the wheel angle to 0 degrees.
+            theWheel.draw(); // Call draw to render changes to the wheel.
+
+            document.getElementById('pw1').className = ""; // Remove all colours from the power level indicators.
+            document.getElementById('pw2').className = "";
+            document.getElementById('pw3').className = "";
+
+            wheelSpinning = false; // Reset to false to power buttons and spin can be clicked again.
+        }
+
+        // -------------------------------------------------------
+        // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters.
+        // -------------------------------------------------------
+        function alertPrize() {
+            // Get the segment indicated by the pointer on the wheel background which is at 0 degrees.
+            var winningSegment = theWheel.getIndicatedSegment();
+            document.getElementById('t1').innerHTML = winningSegment.text;
+            checkwin();
+            total -= click;
+            alert("被選到的數字為 "+winningSegment.text+"\n總共有 "+click+" 個數字被選" + "\n現在總共有 " + total + " 元\n");
+        }
+        // -------------------------------------------------------    
+        function putmoney(obj) {
+            if (obj.className != "in") {
+                obj.bgColor = "#355273";
+                obj.className = "in";
+                click += 1;
+            } else {
+                obj.bgColor = "#FF6161";
+                obj.className = "";
+                click -= 1;
+            }
+        }
+
+        function putmoney1(obj) {
+            if (obj.className != "in") {
+                obj.bgColor = "#355273";
+                obj.className = "in";
+                click += 1;
+            } else {
+                obj.bgColor = "#2B2B2B";
+                obj.className = "";
+                click -= 1;
+            }
+        }
+
+        function checkwin() {
+            for (var i = 1; i <= 36; i++) {
+                if (document.getElementById(i).className == "in") {
+                    if (document.getElementById(i).innerHTML == document.getElementById("t1").innerHTML)
+                        total = total + 36;
+                }
+            }
+
+            //document.getElementById("money").innerHTML = "you have " + total + " money left.";
+        }
+        // -------------------------------------------------------
+        // press coulmn botton
+        // -------------------------------------------------------
+        function col1() {
+            var object1 = document.getElementById('1');
+            var object4 = document.getElementById('4');
+            var object7 = document.getElementById('7');
+            var object10 = document.getElementById('10');
+            var object13 = document.getElementById('13');
+            var object16 = document.getElementById('16');
+            var object19 = document.getElementById('19');
+            var object22 = document.getElementById('22');
+            var object25 = document.getElementById('25');
+            var object28 = document.getElementById('28');
+            var object31 = document.getElementById('31');
+            var object34 = document.getElementById('34');
+            putmoney(object1);
+            putmoney1(object4);
+            putmoney(object7);
+            putmoney1(object10);
+            putmoney1(object13);
+            putmoney(object16);
+            putmoney1(object19);
+            putmoney1(object22);
+            putmoney(object25);
+            putmoney(object28);
+            putmoney1(object31);
+            putmoney(object34);
+        }
+
+        function col2() {
+            var object2 = document.getElementById('2');
+            var object5 = document.getElementById('5');
+            var object8 = document.getElementById('8');
+            var object11 = document.getElementById('11');
+            var object14 = document.getElementById('14');
+            var object17 = document.getElementById('17');
+            var object20 = document.getElementById('20');
+            var object23 = document.getElementById('23');
+            var object26 = document.getElementById('26');
+            var object29 = document.getElementById('29');
+            var object32 = document.getElementById('32');
+            var object35 = document.getElementById('35');
+            putmoney1(object2);
+            putmoney(object5);
+            putmoney1(object8);
+            putmoney1(object11);
+            putmoney(object14);
+            putmoney1(object17);
+            putmoney1(object20);
+            putmoney(object23);
+            putmoney1(object26);
+            putmoney1(object29);
+            putmoney(object32);
+            putmoney1(object35);
+        }
+
+        function col3() {
+            var object3 = document.getElementById('3');
+            var object6 = document.getElementById('6');
+            var object9 = document.getElementById('9');
+            var object12 = document.getElementById('12');
+            var object15 = document.getElementById('15');
+            var object18 = document.getElementById('18');
+            var object21 = document.getElementById('21');
+            var object24 = document.getElementById('24');
+            var object27 = document.getElementById('27');
+            var object30 = document.getElementById('30');
+            var object33 = document.getElementById('33');
+            var object36 = document.getElementById('36');
+            putmoney(object3);
+            putmoney1(object6);
+            putmoney(object9);
+            putmoney(object12);
+            putmoney1(object15);
+            putmoney(object18);
+            putmoney(object21);
+            putmoney1(object24);
+            putmoney(object27);
+            putmoney(object30);
+            putmoney1(object33);
+            putmoney(object36);
+        }
+
+    </script>
+
+</body>
+
+</html>
