@@ -1,1 +1,1 @@
-https://veryjimmy.github.io/web_final
+http://140.138.155.226/~s1033357/web/final_project/
